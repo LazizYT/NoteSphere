@@ -9,6 +9,5 @@ coverage/
 !.env.example
 android/app/build/
 android/.gradle/
-*.md
 *.apk
 *.exe
