@@ -15,6 +15,18 @@
   <img src="https://img.shields.io/badge/AI-NEXAR%20Copilot-8A2BE2" />
 </p>
 
+<p align="center">
+  <a href="https://github.com/LazizYT/NoteSphere/releases/tag/v2.5.0">
+    <img src="https://img.shields.io/badge/⬇️_Download-Windows_EXE-blue?style=for-the-badge&logo=windows&logoColor=white" />
+  </a>
+  <a href="https://github.com/LazizYT/NoteSphere/releases/tag/v2.5.0">
+    <img src="https://img.shields.io/badge/⬇️_Download-Android_APK-green?style=for-the-badge&logo=android&logoColor=white" />
+  </a>
+  <a href="https://github.com/LazizYT/NoteSphere/releases/tag/v2.5.0">
+    <img src="https://img.shields.io/badge/Release-v2.5.0-purple?style=for-the-badge" />
+  </a>
+</p>
+
 ---
 
 ## 📸 Галерея интерфейса
