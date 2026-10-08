@@ -11,3 +11,7 @@ android/app/build/
 android/.gradle/
 *.apk
 *.exe
+*-backup*.json
+*upgrade*.json
+*notesphere-data*.json
+.notesphere-data/
