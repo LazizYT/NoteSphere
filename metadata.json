@@ -1,0 +1,10 @@
+{
+  "name": "NoteSphere Notes & Planner",
+  "description": "Полноценный органайзер: заметки, задачи по матрице Эйзенхауэра, календарь событий, финансовый менеджер, будильники, таймеры, секундомер, и встроенный ИИ-помощник.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

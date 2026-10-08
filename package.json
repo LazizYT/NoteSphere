@@ -1,0 +1,96 @@
+{
+  "name": "notesphere-os",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "node node_modules/tsx/dist/cli.mjs server.ts",
+    "build": "node node_modules/vite/bin/vite.js build && node -e \"require('esbuild').buildSync({ entryPoints: ['server.ts'], bundle: true, platform: 'node', format: 'cjs', packages: 'external', sourcemap: true, outfile: 'dist/server.cjs' });\"",
+    "start": "node dist/server.cjs",
+    "build:desktop": "node node_modules/vite/bin/vite.js build && node node_modules/esbuild/bin/esbuild server.ts --bundle --platform=node --format=cjs --packages=external --outfile=dist/server.cjs && node node_modules/electron/cli.js .",
+    "dist": "node node_modules/vite/bin/vite.js build && node node_modules/esbuild/bin/esbuild server.ts --bundle --platform=node --format=cjs --packages=external --outfile=dist/server.cjs && node node_modules/electron-builder/out/cli/cli.js --win",
+    "build:exe": "node node_modules/vite/bin/vite.js build && node node_modules/esbuild/bin/esbuild server.ts --bundle --platform=node --format=cjs --packages=external --outfile=dist/server.cjs && node node_modules/electron-builder/out/cli/cli.js --win",
+    "build:apk": "build_apk.bat",
+    "dist:all": "npm run dist && npm run build:apk",
+    "clean": "rm -rf dist server.js release",
+    "lint": "node node_modules/typescript/bin/tsc --noEmit",
+    "test": "node node_modules/tsx/dist/cli.mjs tests/run-all.ts",
+    "test:unit": "node node_modules/tsx/dist/cli.mjs tests/unit.test.ts",
+    "test:api": "node node_modules/tsx/dist/cli.mjs tests/api-integration.test.ts",
+    "test:qa": "node node_modules/tsx/dist/cli.mjs tests/ai-qa-tester.ts",
+    "test:all": "node node_modules/tsx/dist/cli.mjs tests/run-all.ts && node node_modules/tsx/dist/cli.mjs tests/ai-qa-tester.ts",
+    "capture:screenshots": "node node_modules/electron/cli.js scripts/capture_screenshots.cjs"
+  },
+  "build": {
+    "appId": "com.notesphere.os",
+    "productName": "NoteSphere OS",
+    "asar": true,
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "electronDist": "node_modules/electron/dist",
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "NoteSphere OS",
+      "artifactName": "NoteSphere-OS-Setup-${version}.exe",
+      "differentialPackage": false
+    },
+    "portable": {
+      "artifactName": "NoteSphere-OS-Portable-${version}.exe"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Office"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "category": "public.app-category.productivity"
+    }
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "vite": "^6.2.3"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^8.5.1",
+    "@capacitor/cli": "^8.5.1",
+    "@capacitor/core": "^8.5.1",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "autoprefixer": "^10.4.21",
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
+    "esbuild": "^0.25.0",
+    "tailwindcss": "^4.1.14",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2"
+  }
+}

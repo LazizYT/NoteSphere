@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- Core PWA standalone display rules (makes it feel like a real native APK/EXE app) -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="NoteSphere" />
+    <meta name="theme-color" content="#aa00ff" />
+    
+    <title>NoteSphere OS - Notes &amp; Planner</title>
+    
+    <!-- Icons and Manifest registrations -->
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/icon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 select-none">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Self-contained Service Worker initialization for ultra-fast load speed and offline execution -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((reg) => console.log('[NoteSphere OS] Service Worker Registered successfully:', reg.scope))
+            .catch((err) => console.error('[NoteSphere OS] Service Worker Registration failed:', err));
+        });
+      }
+    </script>
+  </body>
+</html>
+

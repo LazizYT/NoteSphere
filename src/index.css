@@ -1,0 +1,705 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Space Grotesk", sans-serif;
+}
+
+/* Custom rich-text rendering styles for notes content */
+.rich-text-content h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-slate-900);
+}
+
+.dark .rich-text-content h1 {
+  color: var(--color-slate-100);
+}
+
+.rich-text-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-slate-800);
+}
+
+.dark .rich-text-content h2 {
+  color: var(--color-slate-200);
+}
+
+.rich-text-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 0.75rem;
+  margin-bottom: 0.375rem;
+  color: var(--color-slate-800);
+}
+
+.dark .rich-text-content h3 {
+  color: var(--color-slate-200);
+}
+
+.rich-text-content p {
+  margin-bottom: 0.75rem;
+  line-height: 1.625;
+}
+
+.rich-text-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.rich-text-content ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.rich-text-content blockquote {
+  border-left: 4px solid var(--color-slate-300);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--color-slate-600);
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.dark .rich-text-content blockquote {
+  border-left-color: var(--color-slate-700);
+  color: var(--color-slate-400);
+}
+
+.rich-text-content code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: var(--color-slate-100);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.dark .rich-text-content code {
+  background-color: var(--color-slate-800);
+}
+
+.rich-text-content pre {
+  font-family: var(--font-mono);
+  background-color: var(--color-slate-100);
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  overflow-x: auto;
+  margin-bottom: 0.75rem;
+}
+
+.dark .rich-text-content pre {
+  background-color: var(--color-slate-800);
+}
+
+/* ==========================================================================
+   INVISIBLE SMOOTH SCROLLBARS — Полное скрытие полос прокрутки
+   Прокрутка мышью, тачпадом и свайпами работает идеально и плавно,
+   но визуальные полосы прокрутки (скроллбары) полностью скрыты.
+   ========================================================================== */
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb {
+  display: none !important;
+  background: transparent !important;
+}
+
+
+/* ==========================================================================
+   SOLID OPAQUE THEME (Полное отключение прозрачности и размытия)
+   ========================================================================== */
+*, *::before, *::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Solid panel effect (Zero transparency) */
+.glass {
+  background: #ffffff !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.dark .glass {
+  background: #111622 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid #1e2638 !important;
+}
+
+/* 100% Solid dark card and panel overrides */
+.dark [class*="bg-[#0e1422]/"],
+.dark [class*="bg-[#121826]/"],
+.dark [class*="bg-[#111622]/"],
+.dark [class*="bg-slate-900/"],
+.dark [class*="bg-slate-950/"] {
+  background-color: #0e1422 !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* NoteSphere OS Theme Variables */
+:root {
+  --bg-notesphere-main: #f8fafc;
+  --bg-notesphere-sidebar: #f1f5f9;
+  --bg-notesphere-card: #ffffff;
+  --bg-notesphere-input: #f1f5f9;
+  --border-notesphere: #e2e8f0;
+}
+
+.dark {
+  --bg-notesphere-main: #090b10;
+  --bg-notesphere-sidebar: #0d111a;
+  --bg-notesphere-card: #0e1422;
+  --bg-notesphere-input: #111622;
+  --border-notesphere: #1e2638;
+}
+
+.bg-notesphere-dark {
+  background-color: var(--bg-notesphere-main);
+}
+
+.bg-notesphere-card {
+  background-color: var(--bg-notesphere-card);
+}
+
+.bg-notesphere-input {
+  background-color: var(--bg-notesphere-input);
+}
+
+.border-notesphere {
+  border-color: var(--border-notesphere);
+}
+
+.border-notesphere-subtle {
+  border-color: var(--border-notesphere);
+}
+
+/* Custom Glow / Solid Highlights */
+.cyber-neon-enabled .neon-glow-active {
+  box-shadow: 0 0 12px var(--neon-glow-rgb);
+  border-color: var(--neon-glow-color) !important;
+}
+
+.cyber-neon-enabled .neon-text-active {
+  text-shadow: 0 0 8px var(--neon-glow-color);
+}
+
+.cyber-neon-enabled .neon-card-glow {
+  box-shadow: 0 0 16px rgba(var(--neon-shadow-rgb, 139, 92, 246), 0.2);
+  border-color: var(--neon-glow-color) !important;
+}
+
+/* Solid background container variations (Zero transparency) */
+.glass-blur-none,
+.glass-blur-normal,
+.glass-blur-high {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: #ffffff !important;
+}
+.dark .glass-blur-none,
+.dark .glass-blur-normal,
+.dark .glass-blur-high {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: #090b10 !important;
+}
+
+/* Glow animated pulse */
+@keyframes neonPulse {
+  0%, 100% {
+    opacity: 0.8;
+    filter: drop-shadow(0 0 2px var(--neon-glow-color));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px var(--neon-glow-color));
+  }
+}
+
+.animate-neon-pulse {
+  animation: neonPulse 2.5s infinite ease-in-out;
+}
+
+/* Priority highlights */
+.priority-crit {
+  border-left: 3px solid #ef4444 !important;
+}
+
+.priority-high {
+  border-left: 3px solid #f97316 !important;
+}
+
+.priority-med {
+  border-left: 3px solid #facc15 !important;
+}
+
+.priority-low {
+  border-left: 3px solid #22c55e !important;
+}
+
+/* Utility classes for no-scrollbar / custom-scrollbar (fully hidden) */
+.no-scrollbar,
+.custom-scrollbar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+/* ==========================================================================
+   GLOBAL ANIMATION KIT — применяется ко всему интерфейсу NoteSphere OS.
+   ========================================================================== */
+
+/* --- Entrance keyframes --- */
+@keyframes nsFadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes nsFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes nsScaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes nsSlideInL {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes nsSlideInR {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* --- Continuous ambient keyframes --- */
+@keyframes nsFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes nsShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes nsSpinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes nsGlowPulse {
+  0%, 100% { filter: drop-shadow(0 0 4px var(--neon-glow-color, rgba(139,92,246,0.4))); opacity: 0.85; }
+  50%      { filter: drop-shadow(0 0 14px var(--neon-glow-color, rgba(139,92,246,0.7))); opacity: 1; }
+}
+@keyframes nsHeroGlow {
+  0%   { box-shadow: 0 0 0 0 rgba(var(--neon-shadow-rgb,139,92,246), 0.5); }
+  100% { box-shadow: 0 0 0 12px rgba(var(--neon-shadow-rgb,139,92,246), 0); }
+}
+@keyframes nsGradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes nsPulseSoft {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
+
+/* --- Utility classes --- */
+.animate-fade-up   { animation: nsFadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-in   { animation: nsFadeIn 0.4s ease both; }
+.animate-scale-in  { animation: nsScaleIn 0.35s cubic-bezier(0.34, 1.3, 0.64, 1) both; }
+.animate-slide-l   { animation: nsSlideInL 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-slide-r   { animation: nsSlideInR 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-float     { animation: nsFloat 5s ease-in-out infinite; }
+.animate-spin-slow { animation: nsSpinSlow 6s linear infinite; }
+.animate-glow-pulse{ animation: nsGlowPulse 2.4s ease-in-out infinite; }
+.animate-pulse-soft{ animation: nsPulseSoft 2.2s ease-in-out infinite; }
+
+/* Staggered list entrance helper: set --d on each child for delay */
+.animate-stagger > * { animation: nsFadeInUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: calc(var(--d, 0) * 70ms); }
+
+/* Shimmer text / skeleton */
+.shimmer-text {
+  background: linear-gradient(90deg, var(--color-slate-500) 25%, #fff 50%, var(--color-slate-500) 75%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: nsShimmer 2.5s linear infinite;
+}
+.dark .shimmer-text {
+  background: linear-gradient(90deg, var(--color-slate-500) 25%, #fff 50%, var(--color-slate-500) 75%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Animated gradient border / bg for hero surfaces */
+.animate-gradient {
+  background-size: 300% 300%;
+  animation: nsGradientShift 6s ease infinite;
+}
+
+/* Click ripple sentinel used on taps if needed */
+@keyframes nsRipple {
+  from { transform: scale(0); opacity: 0.45; }
+  to   { transform: scale(2.8); opacity: 0; }
+}
+
+/* ----------------- Live clock flip (blinking second separator) ---------- */
+@keyframes nsTickBlink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0.25; }
+}
+.animate-tick { animation: nsTickBlink 1s steps(1) infinite; }
+
+/* ---------- Generic micro-interaction helpers ---------- */
+.micro-hover { transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, background-color 0.2s ease; }
+.micro-hover:hover { transform: translateY(-2px); }
+.micro-hover:active { transform: translateY(0) scale(0.97); }
+
+/* Entrance for lists fired on mount (used with .animate-stagger) */
+
+/* ==========================================================================
+   DARK-NEON EVOLUTION — глубинная полировка космической темы.
+   ========================================================================== */
+
+/* Акцентный градиентный заголовок */
+.text-gradient-accent {
+  background-image: linear-gradient(100deg, var(--neon-glow-color, #a78bfa) 0%, #22d3ee 55%, var(--neon-glow-color, #f0abfc) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: nsGradientShift 6s ease infinite;
+}
+
+/* Мягкий внутренний «стеклянный» блик поверх карточек */
+.neon-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.neon-sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.06) 48%, transparent 62%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.neon-sheen:hover::after { opacity: 1; }
+
+/* Верхняя светящаяся кромка при наведении на стеклянные карточки */
+.glass-raise {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.glass-raise:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px -14px rgba(var(--neon-shadow-rgb,139,92,246), 0.5);
+  border-color: rgba(var(--neon-shadow-rgb,139,92,246), 0.45) !important;
+}
+
+/* Космическая сетка-фон для рабочих поверхностей */
+.neon-grid {
+  background-image:
+    linear-gradient(rgba(139,92,246,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139,92,246,0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* Приглушённый пульсирующий свечение счётчиков */
+@keyframes nsCounterGlow {
+  0%,100% { text-shadow: 0 0 6px rgba(var(--neon-shadow-rgb,139,92,246),0.35); }
+  50%     { text-shadow: 0 0 16px rgba(var(--neon-shadow-rgb,139,92,246),0.75); }
+}
+.animate-counter-glow { animation: nsCounterGlow 2.8s ease-in-out infinite; }
+
+/* Неоновая линия-разделитель */
+.neon-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-glow-color, #8b5cf6), transparent);
+}
+
+/* ==========================================================================
+   NOTION & OBSIDIAN ENHANCEMENT SUITE STYLES
+   ========================================================================== */
+
+/* 1. [[Wikilinks]] Badge & Interactive Link */
+.wikilink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 0.375rem;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #c084fc;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  user-select: none;
+}
+
+.wikilink:hover {
+  background: rgba(139, 92, 246, 0.28);
+  border-color: rgba(168, 85, 247, 0.6);
+  color: #e9d5ff;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.35);
+  transform: translateY(-1px);
+}
+
+/* 2. Notion-style Callout Blocks */
+.ns-callout {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.875rem 1.125rem;
+  border-radius: 0.75rem;
+  margin: 0.75rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 17, 21, 0.7);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.ns-callout::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 2px 0 0 2px;
+}
+
+.ns-callout-info {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+.ns-callout-info::before {
+  background: #3b82f6;
+  box-shadow: 0 0 8px #3b82f6;
+}
+
+.ns-callout-warn {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.25);
+}
+.ns-callout-warn::before {
+  background: #f59e0b;
+  box-shadow: 0 0 8px #f59e0b;
+}
+
+.ns-callout-success {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+.ns-callout-success::before {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.ns-callout-critical {
+  background: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.25);
+}
+.ns-callout-critical::before {
+  background: #ef4444;
+  box-shadow: 0 0 8px #ef4444;
+}
+
+/* 3. Notion-style Toggle / Spoiler Accordion */
+.ns-toggle {
+  margin: 0.625rem 0;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 17, 23, 0.45);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.ns-toggle:hover {
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+.ns-toggle > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.625rem 0.875rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #f1f5f9;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.ns-toggle > summary::-webkit-details-marker {
+  display: none;
+}
+
+.ns-toggle > summary::before {
+  content: '▶';
+  font-size: 0.7rem;
+  color: var(--neon-glow-color, #8b5cf6);
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ns-toggle[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.ns-toggle > summary:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.ns-toggle-body {
+  padding: 0.625rem 0.875rem 0.875rem 2rem;
+  color: #cbd5e1;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* 4. Notion / Obsidian Code Block */
+.ns-code-block {
+  margin: 0.875rem 0;
+  border-radius: 0.625rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #090b10;
+  overflow: hidden;
+}
+
+.ns-code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.375rem 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.ns-code-content {
+  padding: 0.75rem 1rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #38bdf8;
+  overflow-x: auto;
+}
+
+/* ============================================================
+   LIGHT THEME OVERRIDES
+   Applied when html does NOT have the .dark class
+   ============================================================ */
+html:not(.dark) {
+  --bg-app: #f1f5f9;
+  --bg-header: #ffffff;
+  --bg-sidebar: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f1f5f9;
+  --border-color: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+}
+
+/* Main app background */
+html:not(.dark) body,
+html:not(.dark) #root > div {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Header */
+html:not(.dark) #main-header {
+  background-color: #ffffff !important;
+  border-bottom-color: #e2e8f0 !important;
+}
+
+/* Left sidebar */
+html:not(.dark) #workspace-sidebar {
+  background-color: #f8fafc !important;
+  border-right-color: #e2e8f0 !important;
+}
+
+/* Main content area */
+html:not(.dark) #main-content-area,
+html:not(.dark) [id*="tab-panel"],
+html:not(.dark) main {
+  background-color: #f1f5f9 !important;
+}
+
+/* Cards and panels in light mode inherit clean solid card backgrounds */
+html:not(.dark) .bg-white {
+  background-color: #ffffff !important;
+}
+html:not(.dark) .bg-slate-50 {
+  background-color: #f8fafc !important;
+}
+
+/* Right agenda sidebar */
+html:not(.dark) #agenda-sidebar-right {
+  background-color: #f8fafc !important;
+  border-left-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* Sidebar scrollbar in light mode */
+html:not(.dark) #workspace-sidebar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html:not(.dark) #workspace-sidebar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+html:not(.dark) #workspace-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
